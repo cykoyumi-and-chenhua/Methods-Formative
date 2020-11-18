@@ -1,0 +1,162 @@
+/*
+    * Date: November 18, 2020
+    * Name: Dami Peng, Chenhua Yang
+    * Description: Program is a game called "Nims", in which 2 players remove counters from 3 piles. Whoever removes the last counters out of all piles loses.
+    *
+    *
+*/
+
+
+import java.util.Scanner;
+
+class Nims {
+    public static void main(String [] args) {
+        Scanner reader = new Scanner(System.in);
+
+        //piles,counter removal, turn
+        int a,b,c,remove, turn;
+        //Input and Player names
+        String input,p1,p2;
+    
+
+        //Random Number Generator From 1 to 10
+        // Perameters: (int) (Math.random()*range) + min)
+        a= ((int) (Math.random()*10)+ 1);
+        b= ((int) (Math.random()*10)+ 1);
+        c= ((int) (Math.random()*10)+ 1);
+        //Competely randomizes who gets to go first
+        turn =((int) (Math.random()*2)+ 1);
+
+        //User inputs name 
+            System.out.print("Player 1," +" enter your name: ");
+            p1=reader.nextLine();
+            System.out.print("Player 2," +" enter your name: ");
+            p2=reader.nextLine();
+
+        //Starts looping the game until exit statement is reached
+        while(!(a==0) || !(b==0) || !(c==0)) {
+            //Changing the turn after every loop
+            turn++;
+
+ 
+        //Displays counters in each pile
+        System.out.println("");
+            System.out.print("A:");
+                //Astericks
+                for (int i=1;i <=a;i++) {
+                System.out.print("*");
+                }
+                System.out.println("");
+            System.out.print("B:");
+                for (int j=1;j <=b;j++) {
+                System.out.print("*");
+                }
+                System.out.println("");
+            System.out.print("C:");
+                for (int k=1;k <=c;k++) {
+                System.out.print("*");
+                }
+            System.out.println("");
+
+             //If turn is even, It is P1, if odd It is P2
+             if (turn%2==0) {
+
+        //Choose the pile and number of counters you want to take away 
+            System.out.print(p1+", choose a pile: ");
+             }
+            else {
+                System.out.print(p2+", choose a pile: ");
+            }
+                //Choose your pile
+                input = reader.next();
+                input = input.toUpperCase();
+
+
+            //You can only choose piles (A,B,C); RE-INPUT
+            while(!input.equals("A") && (!input.equals("B")) && (!input.equals("C"))) {
+                System.out.print(input+" is not a valid pile! Choose again:");
+                    input = reader.next();
+                    input = input.toUpperCase();
+                    }
+
+
+                //Cannot choose from an empty pile (A,B,C)
+                while (input.equals("A") && (a==0) || (input.equals("B") && (b==0) || (input.equals("C") && (c==0) ))) {
+                    System.out.println("");
+                if (turn%2==0) {
+                    System.out.print("Nice try,"+p1+" pile "+input + " is empty. Choose again:");
+                }
+                else {
+                    System.out.print("Nice try,"+p2+" pile "+input + " is empty. Choose again:");
+                }
+                    input = reader.next();
+                    input = input.toUpperCase();
+                    //Nested while loop to satisfy this specific situation
+                    while(!input.equals("A") && (!input.equals("B")) && (!input.equals("C"))) {
+                        System.out.print(input+" is not a valid pile! Choose again:");
+                            input = reader.next();
+                            input = input.toUpperCase();
+                    }
+                }
+           
+                //Prompt user to remove counters 
+                System.out.print("How many to remove from pile "+input+": ");
+                    remove=reader.nextInt();
+                
+                //If user removes more than the amount in selected pile; if user removes 0 or negative counters 
+                while(input.equals("A") && remove>a || input.equals("B") && remove>b || input.equals("C") && remove>c || remove <=0) {
+                    System.out.println("");
+                    if (remove <=0) {
+                        System.out.print("You must remove at least 1 from pile "+input+". How many? ");
+                    }
+                    else {
+                    System.out.print("Pile "+input+" doesn't have that many. Try again: ");
+                    }
+                    remove=reader.nextInt();
+                }
+                
+                    //Remove Counters from pile
+                    if (input.equals("A")) {
+                        a -=remove;
+                    }
+                    else if (input.equals("B")) {
+                        b -=remove;
+                    }
+                    else if (input.equals("C")) {
+                        c -=remove;
+                    }
+                
+                    System.out.println(" ");
+
+                    //If their is only 1 stick in the game...
+                    int sticks=a+b+c;
+                    //Dignity system
+                if (turn%2==0) {
+                    if (sticks==1) {
+                        System.out.println(p2+", you must take the last remaining counter, so you lose.");
+                        System.out.println(p1+" wins!");
+                        //Instantly terminates program
+                        //The line outside the while loop does not run
+                        System.exit(0);
+                    }
+                }
+                else {
+                    if (sticks==1) {
+                        System.out.println(p1+", you must take the last remaining counter, so you lose.");
+                        System.out.println(p2+" wins!");
+                        System.exit(0);
+                    }
+                }
+            }
+                
+            //Win Condition
+            //When the while loop exits, it displays who wins
+            if (turn%2==0) {
+                System.out.println(p2+", there are no counters left, so you WIN!");
+            }
+            else {
+                System.out.println(p1+", there are no counters left, so you WIN!");
+            }
+        reader.close();
+    }
+}
