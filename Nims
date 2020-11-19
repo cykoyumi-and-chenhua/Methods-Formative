@@ -115,34 +115,43 @@ class Nims {
                     //If their is only 1 stick in the game...
                     int sticks=a+b+c;
                     //Dignity system
-                if (turn%2==0) {
-                    if (sticks==1) {
-                        System.out.println(p2+", you must take the last remaining counter, so you lose.");
-                        System.out.println(p1+" wins!");
-                        //Instantly terminates program
-                        //The line outside the while loop does not run
-                        System.exit(0);
-                    }
-                }
-                else {
-                    if (sticks==1) {
-                        System.out.println(p1+", you must take the last remaining counter, so you lose.");
-                        System.out.println(p2+" wins!");
-                        System.exit(0);
-                    }
-                }
+                Dignity(turn, p1, p2, sticks);
             }
                 
             //Win Condition
             //When the while loop exits, it displays who wins
-            if (turn%2==0) {
-                System.out.println(p2+", there are no counters left, so you WIN!");
-            }
-            else {
-                System.out.println(p1+", there are no counters left, so you WIN!");
-            }
+            WinCon(turn, p1 ,p2);
         reader.close();
     }
+
+    public static void Dignity(int turn, String p1, String p2, int sticks) {
+        if (turn%2==0) {
+            if (sticks==1) {
+                System.out.println(p2+", you must take the last remaining counter, so you lose.");
+                System.out.println(p1+" wins!");
+                //Instantly terminates program
+                //The line outside the while loop does not run
+                System.exit(0);
+            }
+        }
+        else {
+            if (sticks==1) {
+                System.out.println(p1+", you must take the last remaining counter, so you lose.");
+                System.out.println(p2+" wins!");
+                System.exit(0);
+            }
+        }
+    }
+
+    public static void WinCon(int turn, String p1, String p2) {
+        if (turn%2==0) {
+            System.out.println(p2+", there are no counters left, so you WIN!");
+        }
+        else {
+            System.out.println(p1+", there are no counters left, so you WIN!");
+        }
+    }
+
     public static void PrintCounters(int x, int y, int z) {
         System.out.println("");
             System.out.print("A:");
@@ -162,4 +171,7 @@ class Nims {
                 }
             System.out.println("");
     }
+    
+
 }
+
