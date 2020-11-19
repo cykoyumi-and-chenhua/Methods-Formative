@@ -40,23 +40,7 @@ class Nims {
 
  
         //Displays counters in each pile
-        System.out.println("");
-            System.out.print("A:");
-                //Astericks
-                for (int i=1;i <=a;i++) {
-                System.out.print("*");
-                }
-                System.out.println("");
-            System.out.print("B:");
-                for (int j=1;j <=b;j++) {
-                System.out.print("*");
-                }
-                System.out.println("");
-            System.out.print("C:");
-                for (int k=1;k <=c;k++) {
-                System.out.print("*");
-                }
-            System.out.println("");
+        PrintCounters(a,b,c);
 
              //If turn is even, It is P1, if odd It is P2
              if (turn%2==0) {
@@ -158,5 +142,24 @@ class Nims {
                 System.out.println(p1+", there are no counters left, so you WIN!");
             }
         reader.close();
+    }
+    public static void PrintCounters(int x, int y, int z) {
+        System.out.println("");
+            System.out.print("A:");
+                //Astericks
+                for (int i=1;i <=x;i++) {
+                System.out.print("*");
+                }
+                System.out.println("");
+            System.out.print("B:");
+                for (int j=1;j <=y;j++) {
+                System.out.print("*");
+                }
+                System.out.println("");
+            System.out.print("C:");
+                for (int k=1;k <=z;k++) {
+                System.out.print("*");
+                }
+            System.out.println("");
     }
 }
